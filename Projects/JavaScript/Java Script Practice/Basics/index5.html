@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS select</title>
+</head>
+<body>
+    <select name="Values" id="selectbox">
+        <option value="Ajay">Ajay</option>
+        <option value="Vijay">Vijay</option>
+        <option value="Bikku">Bikku</option>
+    </select> <br>
+    <button ondblclick="findValue()">Click Me</button>
+    <p id="para" onmouseover="changeColor()">Ajay is a good boy</p>
+
+    <script>
+    
+        function findValue() {
+            var select = document.getElementById("selectbox");
+            alert(select.options[select.selectedIndex].value);
+        }
+
+        function changeColor() {
+            var para = document.getElementsByTagName("p");
+            para[0].style.color = "Red";
+
+        }
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!-- This is done using template driven forms -->
+<div class="container-fluid mb-5">
+  <h1>Create new dealer</h1>
+  <hr />
+  <div class="form-container">
+    <form #userForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+      <div class="form-group"> 
+        <!-- <label for="">DealerID</label> -->
+        <input
+          #d_id="ngModel"
+          id="form_input_id"
+          placeholder="Dealer ID"
+          required
+          pattern="\d{5}"
+          name="dealerId"
+          type="text"
+          class="form-control"
+          required
+          [class.is-invalid]="d_id.touched && d_id.invalid"
+          [(ngModel)]="userModel.dealer"
+        />
+        <label for="form_input_id" class="inp-plc">Dealer ID</label>
+        <i
+          [class.d-none]="d_id.untouched || (d_id.touched && d_id.invalid)"
+          class="fa fa-check"
+          aria-hidden="true"
+        ></i>
+        <small
+          class="err-msg err-msg-id"
+          [class.d-none]="d_id.untouched || d_id.valid"
+          >Id must be of 5 digits</small
+        >
+      </div>
+      <div class="form-group">
+        <input
+          id="form_input_name"
+          pattern="[a-zA-Z]{4,30}"
+          #n_id="ngModel"
+          type="email"
+          placeholder="Dealer Name"
+          required
+          class="form-control"
+          name="dealerName"
+          [(ngModel)]="userModel.dealerName"
+        />
+        <label for="form_input_name" class="inp-plc">Dealer Name</label>
+        <i
+          [class.d-none]="n_id.untouched || (n_id.touched && n_id.invalid)"
+          class="fa fa-check"
+          aria-hidden="true"
+        ></i>
+        <small
+          class="err-msg err-msg-id"
+          [class.d-none]="n_id.untouched || n_id.valid"
+          >Name consists of character and length between 4 and 30
+        </small>
+      </div>
+
+      <div class="form-group">
+        <input
+          #r_id="ngModel"
+          pattern="[a-zA-Z ]{3,30}"
+          placeholder="Dealer Region"
+          id="form_input_region"
+          type="text"
+          required
+          class="form-control"
+          name="dealerRegion"
+          [(ngModel)]="userModel.dealerRegion"
+        />
+        <label for="form_input_region" class="inp-plc">Dealer Region</label>
+        <i
+          [class.d-none]="r_id.untouched || (r_id.touched && r_id.invalid)"
+          class="fa fa-check"
+          aria-hidden="true"
+        ></i>
+        <small
+          class="err-msg err-msg-id"
+          [class.d-none]="r_id.untouched || r_id.valid"
+          >Region consists of character and length between 3 and 30</small
+        >
+      </div>
+
+      <div class="form-group">
+        <select
+          #s_option_main="ngModel"
+          name="district"
+          id=""
+          class="custom-select"
+          [(ngModel)]="userModel.district"
+          required
+        >
+          <option #s_option value="">Select your district</option>
+          <option *ngFor="let district of districts">{{ district }}</option>
+        </select>
+        <br />
+        <small
+          class="err-msg"
+          [class.d-none]="s_option_main.value || s_option_main.untouched"
+          >Please choose a topic</small
+        >
+      </div>
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!userForm.form.valid"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
+  <div class="bk-error" [class.bk-error1]="errMsg" *ngIf="errMsg || sucMsg">
+    <p  class="text-success" *ngIf="sucMsg">{{ sucMsg }}</p>
+    <p  class="text-danger" *ngIf="errMsg">Error: {{ errMsg }}</p>
+  </div>
+</div>
+<div class="tdf">
+  <small>Made using Template driven forms</small>
+</div>
+<router-outlet></router-outlet>

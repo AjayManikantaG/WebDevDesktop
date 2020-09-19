@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.nav-container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    justify-content: space-between;
+}
+
+.nav-mains,.nav-heads {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.nav-mains p{
+    margin-left: 15px;
+}
+
+.nav-mains h1 {
+    font-size: 34px;
+    font-weight: 800;
+    color: #e62b1e;
+}
+
+.nav-mains p {
+    font-size: 22px;
+    color: rgb(206, 203, 203);
+}
+
+.nav-heads p {
+    margin-left: 20px;
+}
+
+.nav-heads {
+    margin-right: 20px;
+}
+
+.nav-heads p a {
+    text-decoration: none;
+    color: black;
+}
+
+#border-right {
+    border-right: 1px solid #ddd;
+    padding-right: 10px;
+}
+
+.main-section-container {
+    height: 80vh;
+    background: url("https://www.haselt.com/blog/the-ted-software-engineers-recommend-their-favorite-ted-talks/PIC_featured.jpg") no-repeat ;
+    background-size: cover;
+    box-shadow: inset 2px 0px 245px 10px rgba(0,0,0,0.75); 
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main-items {
+    margin-bottom: 25px;
+}
+
+#first {
+    font-size: 38px;
+}
+
+#second {
+    font-size: 22px;
+}
+
+#third {
+    font-size: 20px;
+}

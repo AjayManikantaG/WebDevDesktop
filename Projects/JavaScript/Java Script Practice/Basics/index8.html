@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Timing Functions </title>
+
+    <script>
+        var seconds = 0;
+        var ID = 0;
+        function printMsg() {
+            document.getElementById("msg").innerHTML = seconds + " Seconds have been passed";
+            seconds += 1;
+        }
+
+        function start() {
+            // ID = window.setTimeout(printMsg, 5000);
+            ID = window.setInterval(printMsg, 500);
+        }
+
+        function stop() {
+            // window.clearTimeout(ID);
+            window.clearInterval(ID);
+        }
+
+    </script>
+</head>
+<body>
+    <button onclick="start()">Start</button>
+    <p id="msg">Content Here</p>
+    <button onclick="stop()">Stop</button>
+</body>
+</html>

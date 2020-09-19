@@ -1,0 +1,70 @@
+.header {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba($color-black, 0.8), rgba($color-black, 0.6)), url(../images/bg.jpeg) center no-repeat;
+    background-size: cover;
+
+    .brand {
+        @include centering(15%);
+        @include flexLayout;
+    }
+    &-banner {
+        text-align: center;
+        @include centering(50%);
+    }
+}
+
+.about-us {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+
+    &-left {
+        width: 40%;
+        position: relative;
+        left: -200px;
+
+        img {
+            width: 100%;
+            opacity: 0.7;
+        }
+    }
+
+    &-right {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 100px;
+
+        .stars {
+            margin: 30px 0;
+        }
+
+        .star {
+            font-size: 15px;
+            color: $color-primary;
+            margin-left: 10px;
+        }
+
+        .description {
+            font-family: $font-josefinSans;
+            font-size: 25px;
+            font-style: italic;
+            color: $color-secondary;
+            text-align: justify;
+
+            &::first-letter {
+                padding-left: 50px;
+            }
+        }
+    }
+}
+
+.gallery {
+    .cards-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monserrat&display=swap">
+    <script src="https://kit.fontawesome.com/5691412a37.js"></script>
+    <title>Book My Show</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Montserrat, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* Nav Bar Css starts here */
+#nav-bar {
+    height: 100px;
+    background: #333545;
+    
+}
+
+.main-nav-bar-container {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav-bar-container img {
+    width: 130px;
+    height: 75px;
+    color: white;
+    margin-left: 10px;
+}
+
+.main-nav-bar-container .search-section {
+    margin-left: 50px;
+    background: white;
+    padding: 1px 1px 1px 15px;
+    border-radius: 5px;
+}
+
+.main-nav-bar-container i {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.288);
+}
+
+.main-nav-bar-container input[type="text"] {
+    height: 40px;
+    width: 850px;
+    color: black;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Montserrat,sans-serif;
+    font-weight: 100;
+    padding: 1px 1px 1px 10px;
+}
+
+.main-nav-bar-container .sign-in-btn {
+    margin-left: 50px;
+    padding: 6px 12px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background: #0078ff; 
+    cursor: pointer;
+}
+
+.main-nav-bar-container .fa-bars {
+    color: rgba(216, 216, 216, 0.438);
+    font-size: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+
+/* Slider Css */
+#sign-in-slide {
+    position: absolute;
+    height: 100%;
+    width: 25%;
+    background: white;
+    display: none;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    transition: all 0.2s;
+    box-shadow: -2px 0px 8px 0px rgba(0,0,0,0.75);
+}
+
+.slide-main-container {
+    display: flex;
+    align-items: center;
+    background: #333545;
+    height: 100px;
+    color: white;
+}
+
+
+.slide-main-container 
+.sign-in-up-logo 
+i {
+    color: white;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.slide-main-container 
+span 
+i {
+    color: rgb(228, 212, 212);
+    margin-left: 40px;
+    cursor: pointer;
+}
+
+.slide-main-container 
+.sign-in-up-text p {
+    font-family: Montserrat, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+.slide-main-container 
+.sign-in-up-text p 
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
+
+.slide-main-container 
+.sign-in-up-text
+.guest-text {
+    color: rgba(194, 194, 194, 0.274)
+}
+
+.slide-content p {
+    padding: 20px 15px;
+    border-bottom: 1px solid rgb(219, 216, 216);
+}
+
+.slide-content p a {
+    color: black;
+    font-family: Montserrat, sans-serif;
+    font-weight: 100;
+    font-size: 12px;
+}
+
+.slide-content p:hover {
+    background: rgb(243, 239, 239);
+    cursor: pointer;
+}
+
+/* Sub Events Css starts here */
+.sub-nav-bar-container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.sub-nav-bar-container .main-events {
+    margin-right: 150px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.sub-nav-bar-container 
+a {
+    color: white;
+    font-weight: 100;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.sub-nav-bar-container
+.main-events 
+a {
+    margin-left: 20px;
+}
+
+.sub-nav-bar-container
+.sub-events 
+a {
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+/* Image Slider Css */
+#image-slider {
+    position: relative;
+}
+
+#image-slider 
+.main-image-slider-container {
+    display: flex;
+    overflow-x: hidden;
+}
+
+#image-slider 
+.main-image-slider-container 
+img {
+    height: 320px;
+    padding: 10px 10px;
+    border-radius: 15px;
+    width: 700px;
+    transform: translateX(-50%);
+    transition: all 0.8s ease-in-out;
+    cursor: pointer;
+}
+
+#next-image-slide {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    color: rgb(172, 144, 144);
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease-in;
+}
+
+#prv-image-slide {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    color: rgb(172, 144, 144);
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+#image-slider:hover #next-image-slide {
+    opacity: 1;
+}
+
+#image-slider:hover #prv-image-slide {
+    opacity: 1;
+}
+
+/* Trending searches and movies css */
+#movies-section {
+    display: flex;
+    height: 1050px;
+    padding-top: 100px;
+    background: #ddd;
+}
+
+#movies-section 
+.trending-searches {
+    min-width: 25%;
+    height: 100%;
+}
+
+#movies-section 
+.trending-searches
+h3 {
+    text-align: center;
+    font-weight: 200;
+}
+
+#movies-section 
+.trending-searches
+.top-searches {
+    padding: 10px;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 5px;
+    transition: box-shadow 0.4s ease-in-out;
+}
+
+#movies-section 
+.trending-searches
+.top-searches:hover {
+    box-shadow: 0px 0px 10px 0 rgba(0,0,0,0.6);
+}
+
+
+#movies-section 
+.trending-searches
+.top-searches
+p {
+ background: #fff;
+ padding: 15px 15px 30px 15px;
+ cursor: pointer;
+ border-bottom: 1px solid rgba(167, 167, 167, 0.199);
+ font-size: 14px;
+}
+
+#movies-section 
+.trending-searches
+.top-searches
+p:last-child {
+    border-bottom: none;
+}
+
+#movies-section 
+.trending-searches
+.top-searches
+p a {
+    color: #000;
+}
+
+#movies-section 
+.trending-searches
+.top-searches
+p:hover a{
+    color: blue;
+}
+
+#movies-section 
+.all-items {
+    max-width: 80%;
+    margin-left: 30px;
+}
+
+#movies-section 
+.all-items 
+h3 {
+    font-weight: 200;
+}
+
+#movies-section 
+.all-items 
+.all-movies {
+    margin-top: 20px;
+    display: flex;
+}
+
+#movies-section 
+.all-items 
+.all-movies
+div {
+    display: flex;
+    flex-direction: column; 
+}
+
+.dear-comrade {
+    background: white;
+    border-radius: 15px;
+    transition: box-shadow 0.4s ease-in-out;
+    margin-right: 14px;
+    cursor: pointer;
+}
+
+.dear-comrade:hover {
+    box-shadow: 0px 0px 15px 0 rgba(0,0,0,0.6);
+}
+
+#movies-section 
+.all-items 
+.all-movies
+div 
+img {
+    width: 250px;
+    border-radius: 15px 15px 0 0;
+}
+
+#movies-section 
+.all-items 
+.all-movies
+div 
+.movie-name 
+p {
+    font-size: 12px;
+    padding: 15px;
+}
+
+/* All the events css goes here */
+.events h3 {
+    margin-top: 20px;
+}
+
+#footer {
+    background: #404043;
+}
+
+#footer .customer-care {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+    color: rgba(221, 221, 221, 0.822);
+    font-weight: 100;
+}
+
+.customers {
+    text-align: center;
+    cursor: pointer
+}
+
+.last-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.last-footer i {
+    margin-right: 10px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    color: rgba(221, 221, 221, 0.822);
+}
+
+.last-footer i:hover {
+    color: white;
+}
+
+
+
+/* To get responsive design */
+@media only screen and (max-width: 1250px) {
+    .main-nav-bar-container input[type="text"] {
+        height: 40px;
+        width: 600px;
+        color: black;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-family: Montserrat,sans-serif;
+        font-weight: 100;
+        padding: 1px 1px 1px 10px;
+    }
+
+    .sub-nav-bar-container 
+    .main-events {
+        margin-right: 20px;
+    }
+}
+    </style>
+</head>
+<body>
+        <!-- Nav Bar Content is available here-->
+        <nav id="nav-bar">
+            <div class="main-nav-bar-container">
+                <img src="https://etimg.etb2bimg.com/thumb/69202666.cms?width=610&resizemode=3" alt="book my Show">
+                <div class="search-section">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search for Movies, Events, Plays, Sports and Activities">
+                </div>
+                <button onclick="window.location.href = 'sign_in_page.html'" class="sign-in-btn">Sign In</button>
+                <span class="slide-opener" onclick="openSlider()"><i class="fas fa-bars"></i></span> 
+            </div>
+            <div class="sub-nav-bar-container">
+                <div class="main-events">
+                    <a href="#">Movies</a>
+                    <a href="#">Events</a>
+                    <a href="#">Plays</a>
+                    <a href="#">Sports</a>
+                    <a href="#">Monuments</a>
+                    <a href="#">Activities</a>
+                </div>
+                <div class="sub-events">
+                    <a href="#">Corporates</a>
+                    <a href="#">Offers</a>
+                    <a href="#">Gift Cards</a>
+                    <a href="#">Chennai <i class="fas fa-caret-down"></i></a>
+                    <a href="#">English <i class="fas fa-caret-down"></i></a>
+                </div>
+            </div>
+        </nav>
+    
+        <!-- Slider content is available here-->
+        <div id="sign-in-slide">
+            <div class="slide-main-container">
+                <div class="sign-in-up-logo">
+                        <i class="far fa-user fa-2x"></i>
+                </div>
+                <div class="sign-in-up-text">
+                    <p class="guest-text">Welcome Guest</p>
+                    <p><a href="#">Sign In / Sign Up</a></p>
+                </div>
+                <span onclick="closeSlider()"><i class="fas fa-times "></i></i></span> 
+            </div>
+            <div class="slide-content">
+                <p><a href="#">Notification</a></p> 
+                <p><a href="#">QuikPay</a></p> 
+                <p><a href="#">Booking History</a></p> 
+                <p><a href="#">Rewards</a></p> 
+                <p><a href="#">BookASmile</a></p> 
+                <p><a href="#">Support</a></p> 
+                <p><a href="#">Settings</a></p> 
+            </div>
+        </div>
+    
+        <!-- Image Slider -->
+        <div id="image-slider">
+            <div class="main-image-slider-container">
+                <img src="https://in.bmscdn.com/showcaseimage/eventimage/bring-the-soul-the-movie-bts-02-08-2019-10-32-31-574.jpg" alt="Image3">
+                <img src="https://in.bmscdn.com/showcaseimage/eventimage/mother-of-invention--a-trial-show-by-aditi-mittal-17-04-2019-06-20-24-687.jpg" alt="Image1">
+                <img src="https://in.bmscdn.com/showcaseimage/eventimage/dazzling-diamond-treasure-20-02-2019-10-30-59-810.jpg" alt="Image2">
+                <img src="https://in.bmscdn.com/showcaseimage/eventimage/bring-the-soul-the-movie-bts-02-08-2019-10-32-31-574.jpg" alt="Image3">
+                <img src="https://in.bmscdn.com/showcaseimage/eventimage/mother-of-invention--a-trial-show-by-aditi-mittal-17-04-2019-06-20-24-687.jpg" alt="Image1">
+            </div>  
+            
+            <div id="next-image-slide"><i class="fas fa-chevron-circle-right fa-3x"></i></div>
+            <div id="prv-image-slide"><i class="fas fa-chevron-circle-left fa-3x"></i></div>
+        </div>
+    
+    
+        <!-- Trending searches and movies comes here -->
+        <div id="movies-section">
+            <div class="trending-searches">
+                <h3>Trending Searches</h3>
+                <div class="top-searches">
+                    <p><a href="#">Nerkonda Paarvai</a></p>
+                    <p><a href="#">Fast & Furious: Hobbs & Shaw</a></p>
+                    <p><a href="#">The Lion King</a></p>
+                    <p><a href="#">Comali</a></p>
+                    <p><a href="#">Dear Comrade</a></p>
+                    <p><a href="#">Bigil</a></p>
+                    <p><a href="#">A1</a></p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="all-items">
+                <div class="movies">
+                    <h3>Movies</h3>
+                    <div class="all-movies">
+                        <div class="dear-comrade">
+                            <img src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/dear-comrade-et00075421-09-05-2018-12-13-20.jpg" alt="Dear Comrade">
+                            <div class="movie-name">
+                                <p><i class="fas fa-heart" style="color: rgb(177, 37, 37)"></i> &nbsp;72% &nbsp;&nbsp; Dear Comrade </p>
+                            </div>
+                        </div>
+                        <div class="dear-comrade">
+                                <img src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/the-lion-king-2019-et00089130-23-11-2018-01-42-40.jpg" alt="Dear Comrade">
+                                <div class="movie-name">
+                                    <p><i class="fas fa-heart" style="color: rgb(177, 37, 37)"></i> &nbsp;83% &nbsp;&nbsp; The Lion King </p>
+                                </div>
+                        </div>
+                        <div class="dear-comrade">
+                                <img src="https://in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/nerkonda-paarvai-et00104821-12-06-2019-04-13-49.jpg" alt="Dear Comrade">
+                                <div class="movie-name">
+                                    <p><i class="fas fa-heart" style="color: rgb(177, 37, 37)"></i> &nbsp;86% &nbsp;&nbsp; Nerkonda Paarvai </p>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="events">
+                        <h3>Events</h3>
+                        <div class="all-movies">
+                            <div class="dear-comrade">
+                                <img src="https://in.bmscdn.com/Events/moviecard/wake-n-bake-by-rohan-joshi-et00107296-2019-7-15-t-22-40-35.jpg" alt="Dear Comrade">
+                                <div class="movie-name">
+                                    <p> &nbsp;<u>27 Dec</u>  &nbsp;&nbsp; Wake N Bake </p> 
+                                </div>
+                            </div>
+                            <div class="dear-comrade">
+                                    <img src="https://in.bmscdn.com/Events/moviecard/girf-unplugged-chennai-et00106390-2019-7-4-t-19-48-11.jpg" alt="Dear Comrade">
+                                    <div class="movie-name">
+                                        <p> &nbsp;<u>13 Aug</u>  &nbsp;&nbsp; Girf unplugged </p>
+                                    </div>
+                            </div>
+                            <div class="dear-comrade">
+                                    <img src="https://in.bmscdn.com/Events/moviecard/suryan-fm-s-rhythm-sid-sriram-concert-et00107397-2019-7-28-t-12-30-27.jpg" alt="Dear Comrade">
+                                    <div class="movie-name">
+                                        <p> &nbsp;<u>19 Sept</u>  &nbsp;&nbsp; Rhythm with Sid SRIRAM </p>
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    
+        <footer id="footer">
+            <div class="customer-care">
+                <div class="customers">
+                    <p><i class="fas fa-users fa-4x"></i></p>
+                    <p>24/7 CUSTOMER CARE</p>
+                </div>
+                <div class="customers">
+                    <p><i class="fas fa-ticket-alt fa-4x"></i></p>
+                    <p>RESEND BOOKING CONFIRMATION</p>
+                </div>
+                <div class="customers">
+                    <p><i class="fas fa-newspaper fa-4x"></i></p>
+                    <p>24/7 CUSTOMER CARE</p>
+                </div>
+            </div>
+            <div class="last-footer">
+                <i class="fab fa-facebook-square fa-2x"></i>
+                <i class="fab fa-instagram fa-2x"></i>
+                <i class="fab fa-google-plus-g fa-2x"></i>
+                <i class="fab fa-youtube fa-2x"></i>
+                <i class="fab fa-pinterest-square fa-2x"></i>
+            </div>
+        </footer>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <script>
+            function openSlider() {
+                let slider = document.getElementById('sign-in-slide');
+                slider.style.display = "block";
+            }
+    
+            function closeSlider() {
+                let slider = document.getElementById('sign-in-slide');
+                slider.style.display = "none";
+            }
+    
+            const imageSlide = document.querySelector('.main-image-slider-container');
+            const allImages = document.querySelectorAll('.main-image-slider-container img');
+            let counter = 0;
+                    
+            setInterval (function() {
+                if (counter == 0) {
+                    allImages[0].style.WebkitTransform = "translateX(-50%)";
+                    allImages[1].style.WebkitTransform = "translateX(-50%)";
+                    allImages[2].style.WebkitTransform = "translateX(-50%)";
+                    allImages[3].style.WebkitTransform = "translateX(-50%)";
+                    allImages[4].style.WebkitTransform = "translateX(-50%)";
+                } 
+                if (counter == 1) {
+                    allImages[0].style.WebkitTransform = "translateX(-150%)";
+                    allImages[1].style.WebkitTransform = "translateX(-150%)";
+                    allImages[2].style.WebkitTransform = "translateX(-150%)";
+                    allImages[3].style.WebkitTransform = "translateX(-150%)";
+                    allImages[4].style.WebkitTransform = "translateX(-150%)";
+                } 
+                if (counter == 2) {
+                    allImages[0].style.WebkitTransform = "translateX(-250%)";
+                    allImages[1].style.WebkitTransform = "translateX(-250%)";
+                    allImages[2].style.WebkitTransform = "translateX(-250%)";
+                    allImages[3].style.WebkitTransform = "translateX(-250%)";
+                    allImages[4].style.WebkitTransform = "translateX(-250%)";
+                } 
+                if (counter == 3) {
+                    allImages[0].style.WebkitTransform = "translateX(350%)";
+                    allImages[1].style.WebkitTransform = "translateX(350%)";
+                    allImages[2].style.WebkitTransform = "translateX(350%)";
+                    allImages[3].style.WebkitTransform = "translateX(350%)";
+                    allImages[4].style.WebkitTransform = "translateX(350%)";
+                } 
+                counter = counter + 1;
+                if (counter == 3) {
+                    counter = 0;
+                }
+            }, 2500);
+        </script>
+    
+        
+    </body>
+</html>

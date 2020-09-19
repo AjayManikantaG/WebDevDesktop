@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form</title>
+</head>
+<body>
+    
+    <form action="index1.html" onsubmit="return validate()">
+        <input id="text1" type="text" placeholder="Enter Name"> <br>
+        <input id="text2" type="password" placeholder="Enter Password"> <br>
+        <button>Submit</button>
+
+    </form>
+
+
+    <script>
+        
+        var text1 = document.getElementById("text1");
+        var text2 = document.getElementById("text2");
+
+        function validate() {
+            if (text1.value.trim() == "") {
+                alert("No blank values allowed");
+                text1.style.borderColor = "red";
+                return false;
+            } else if (text2.value.trim() == "") {
+                alert("No blank values allowed");
+                text2.style.borderColor = "red";
+                return false;
+            } else if(text2.value.trim().length < 6) {
+                alert("Password length is too short");
+                return false;
+            } else {
+                return true;
+            }
+
+            text1.style.outline = "blue";
+            text2.style.borderColor = "blue";
+        }
+     
+    </script>
+
+
+</body>
+</html>

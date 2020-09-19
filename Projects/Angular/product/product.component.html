@@ -1,0 +1,510 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<ul class="breadcrumb">
+				<li><a [routerLink]="['/store']">{{'STORE' | translate:utilService.lang}}</a></li>
+				<ng-container *ngIf="child.name">
+					<li><a role="button" (click)="navCategory(child?.permalink,child?.name,'asc')">{{child?.parent.name | translate:utilService.lang}}</a>
+					</li>
+					<li>{{child?.name | translate:utilService.lang}}</li>
+				</ng-container>
+			</ul>
+		</div>
+	</div>
+	<div class="row mrg16-B">
+		<div class="col-md-5 col-sm-5 product-carousel-section">
+
+			<div class="swipe-cont">
+				<div
+				  class="swiper-container gallery-top"
+				  [swiper]="galleryTopConfig"
+				  #galleryImages="ngxSwiper"
+				>
+				  <div class="swiper-wrapper">
+					<div
+					  class="swiper-slide"
+					  *ngFor="let obj of images; index as i"
+					  (click)="activatePopUp(i)"
+					>
+					  <img
+						*ngIf="obj.type == 'image'"
+						[src]="obj.src | safe"
+						class="hover-shadow cursor"
+						title="1"
+						alt="obj.alt"
+					  />
+					  <iframe
+						*ngIf="obj.type == 'youtube'"
+						[src]="obj.src | safe"
+						webkitallowfullscreen
+						frameborder="0"
+						allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+					  ></iframe>
+					  <video
+						*ngIf="obj.type == 'video'"
+						controls
+						poster="https://pbs.twimg.com/profile_images/981311875643195393/dS0t6BQ8_400x400.jpg"
+					  >
+						<source [src]="obj.src | safe" type="video/mp4" />
+					  </video>
+					</div>
+				  </div>
+				  <!-- Add Pagination -->
+				  <div class="swiper-pagination"></div>
+				  <!-- Add Arrows -->
+				  <div class="swiper-button-next"></div>
+				  <div class="swiper-button-prev"></div>
+				</div>
+				<div
+				  class="swiper-container gallery-thumbs"
+				  [swiper]="galleryThumbsConfig"
+				  #galleryThumbs="ngxSwiper"
+				>
+				  <div class="swiper-wrapper">
+					<div class="swiper-slide" *ngFor="let obj of images">
+					  <img
+						*ngIf="obj.type == 'image'"
+						[src]="obj.src"
+						class="hover-shadow cursor"
+						title="1"
+						alt="obj.alt"
+					  />
+					  <iframe
+						*ngIf="obj.type == 'youtube'"
+						[src]="obj.src | safe"
+						webkitallowfullscreen
+						frameborder="0"
+						allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen
+					  ></iframe>
+					  <video
+						*ngIf="obj.type == 'video'"
+						controls
+						poster="https://pbs.twimg.com/profile_images/981311875643195393/dS0t6BQ8_400x400.jpg"
+					  >
+						<source [src]="obj.src" type="video/mp4" />
+					  </video>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			  
+			  <!-- Pop-up container -->
+			  <div class="pop-up">
+				<div
+				  class="pop-cont"
+				  [class.pop-cont-display]="isPopUp"
+				  [class.bounceInUp]="isPopUp"
+				  [class.animated]="isPopUp"
+				>
+				  <div
+					class="swiper-container gallery-top"
+					[swiper]="galleryTopConfig1"
+					#galleryImages1="ngxSwiper"
+				  >
+					<div class="swiper-wrapper">
+					  <div class="swiper-slide" *ngFor="let obj of images">
+						<img
+						  *ngIf="obj.type == 'image'"
+						  [src]="obj.src | safe"
+						  class="hover-shadow cursor"
+						  title="1"
+						  alt="obj.alt"
+						/>
+			  
+						<iframe
+						  *ngIf="obj.type == 'youtube'"
+						  [src]="obj.src | safe"
+						  webkitallowfullscreen
+						  frameborder="0"
+						  allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+						  allowfullscreen
+						></iframe>
+						<video
+						  *ngIf="obj.type == 'video'"
+						  controls
+						  pause="pause"
+						  poster="https://pbs.twimg.com/profile_images/981311875643195393/dS0t6BQ8_400x400.jpg"
+						>
+						  <source [src]="obj.src | safe" type="video/mp4" />
+						</video>
+					  </div>
+					</div>
+					<!-- Add Pagination -->
+					<!-- Add Arrows -->
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+				  </div>
+				  <i class="glyphicon glyphicon-remove" (click)="removePopUp()"></i>
+				</div>
+			  </div>
+
+
+			<!-- <div id="slides_control" [ngInit]="fnInitOnCarousel()"> -->
+			<!-- <div id="slides_control">
+				<div id="myCarousel" class="carousel" data-ride="carousel" data-interval="0" data-pause="false">
+					<carousel id="product-slider" [showIndicators]="false" [interval]="false">
+						<slide class="item text-center" [ngClass]="{'active':$index==0}" *ngFor="let slide of slides; index as $index;">
+							
+							<div *ngIf="slide.image==1" class="climg">
+									<lib-ngx-image-zoom
+										[magnification]="1.5"
+										[zoomMode]="'hover'"
+										[thumbImage]=slide.trustSrc
+										onerror="this.src='/assets/images/no-image.png'"
+									></lib-ngx-image-zoom>
+							</div>
+							<div *ngIf="slide.image==0" class="clvid">
+								<iframe
+									[src]="slide.trustSrc"
+									target="_parent" frameborder="0" allowfullscreen>
+								</iframe>
+							</div>
+							
+						</slide>
+					</carousel>
+				</div>
+			</div> -->
+
+			<!-- <div *ngIf="!loading">
+				<ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+			</div> -->
+
+			<!-- <div id="slides_control" [ngInit]="fnInitOnCarousel()">
+				<div id="myCarousel" class="carousel" data-ride="carousel" data-interval="0" data-pause="false">
+					<div class="carousel-inner">
+						<div class="item" [ngClass]="{'active':index==0}"
+							*ngFor="let slide of slides; index as $index;">
+							<div class="text-center">
+								<div *ngIf="slide.image==1" class="climg">
+									<zoom src="{{trustAsResourceUrl(slide.path)}}" alt={{slide.altText}}
+										frame="frame{{index}}" img="image{{index}}" zoomlvl="1.5" )></zoom>
+								</div>
+								<div *ngIf="slide.image==0" class="clvid">
+									<iframe
+										src="{{trustAsResourceUrl(slide.path+'?rel=0&enablejsapi=1&playlist='+slide.filename)}}"
+										target="_parent" frameborder="0" allowfullscreen>
+									</iframe>
+								</div>
+							</div>
+						</div>
+					</div>
+					<a class="left carousel-control" href="#myCarousel" *ngIf="slides.length>1"
+						onclick="event.preventDefault()" role="button" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#myCarousel" *ngIf="slides.length>1"
+						onclick="event.preventDefault()" role="button" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div> -->
+		</div>
+		<div class="col-md-7 col-sm-7" style="border:0px solid gray; z-index: 0;">
+			<div class="product-name" [innerHtml]="name"></div>
+			<!--vertical="true"-->
+			<div class="form-group margin-bottom product_tabs">
+				<!-- <uib-tabset active="activeTabIndex" class="tab-animation">
+					<uib-tab active="activeTabIndex==index" *ngFor="let desc of description" heading="{{desc.tab}}">
+						<span class="descScroll">
+							<div [innerHtml]="desc.content"></div>
+						</span>
+					</uib-tab>
+				</uib-tabset> -->
+				<tabset class="tab-animation">
+					<tab *ngFor="let desc of description;" heading="{{desc.tab | translate:utilService.lang}}">
+						<span class="descScroll">
+							<div [innerHtml]="desc.content"></div>
+						</span>
+					</tab>
+				</tabset>
+			</div>
+
+			<div class="product_gender">
+				<div class="gender both" *ngIf="gender!='M' && gender!='F'">
+					<i class="fa fa-male"></i>
+					<i class="fa fa-female"></i>
+					<span class="male">M</span>
+					<span class="female">F</span>
+				</div>
+				<div class="gender" *ngIf="gender=='M'">
+					<i class="fa fa-male"></i>
+					<span class="male">M</span>
+				</div>
+				<div class="gender" *ngIf="gender=='F'">
+					<i class="fa fa-female"></i>
+					<span class="female">F</span>
+				</div>
+			</div>
+
+			<div class="product_price">
+				<h3 style="margin-top:10px;">
+					<div class="product_discount" *ngIf="cost_price != list_price">
+						<div class="discount-badge">
+							<span *ngIf="option === 'I'">
+								{{roundedPercentage(list_price,cost_price)}}% {{'OFF' | translate:utilService.lang}}
+							</span>
+							<span *ngIf="option === 'G'">
+								{{'SAVE' | translate:utilService.lang}} {{roundedPercentage(list_price,cost_price)}}%
+							</span>
+						</div>
+					</div>
+					<div class="product_value" *ngIf="cost_price == list_price">
+						{{cost_price | currency:"MYR"}}
+					</div>
+					<div *ngIf="cost_price != list_price">
+						<span class="product_value">{{list_price | currency:"MYR"}}</span>
+						<span class="strike">{{cost_price | currency:"MYR"}}</span>
+					</div>
+					<div *ngIf="inv==0">
+						<span class="product_inventory">{{'Out Of Stock' | translate:utilService.lang}}</span>
+					</div>
+				</h3>
+			</div>
+
+			<div class="pd20-B">
+				<div *ngIf="!value">
+					<span *ngFor="let attrs of groupedAttributes; index as $index;">
+						<h6 class="title-attr">
+							<small>{{ formatLabel(attrs[0].attribute) | uppercase | translate:utilService.lang}}</small>
+						</h6>
+						<ul class="product-type clearfix">
+							<li *ngFor="let attribute of attrs; index as $index;"
+								(click)="updatePrice(attribute,attrs)" [ngClass]="{'active':attribute.dflt==1}">
+								{{attribute.value}}
+							</li>
+						</ul>
+					</span>
+				</div>
+				<span *ngIf="value">
+					<h6 class="title-attr">
+						<small>{{ 'SIZE' | translate:utilService.lang}}</small>
+					</h6>
+					<ul class="product-type clearfix">
+						<li [ngClass]="{'active':1}">{{value}}</li>
+					</ul>
+				</span>
+			</div>
+
+			<div class="pd20-B">
+				<h6 class="title-attr"><small>{{ 'QUANTITY' | translate:utilService.lang}}</small></h6>
+				<div class="qty-btn-group">
+					<button type="button" 
+							[disabled]="isDisabled" 
+							class="qty-btn qty-btn-decrease" 
+							[ngClass]="{'disabled' : quantityToAdd == 1 || isDisabled}" 
+							(click)="minusQty()">-</button>
+					<input type="text" 
+							readonly="readonly" 
+							class="qty-btn qty-btn-input" 
+							id="quantity" 
+							placeholder="{{quantityToAdd}}" 
+							[(ngModel)]="quantityToAdd"
+							step="1" 
+							min="10" 
+							onkeypress="return event.charCode >= 48 && event.charCode <= 57" 
+							[disabled]="isDisabled"
+							[ngClass]="{'disabled' : isDisabled}"
+							required />		
+					<button type="button" 
+							[disabled]="isDisabled" 
+							class="qty-btn qty-btn-increase" 
+							[ngClass]="{'disabled' : quantityToAdd >= 10 || isDisabled}" 
+							(click)="plusQty()">+</button>
+				</div>
+				<div class="mrg16-T">
+					<p ng-if="quantityErrorMessage" class="error-message mrg4-B">{{quantityErrorMessage}}</p>
+					<button type="button" class="btn btn-primary btn-lg btn-buy-now" (click)="addToCart()" [disabled]="inv==0">{{'ADD TO CART' | translate:utilService.lang}}</button>
+				</div>
+			</div>
+
+			<div class="pd20-B" *ngFor="let attrs of groupedSubAttributes; index as $index;">
+				<h6 class="title-attr"><small>{{attrs[0].attribute | uppercase}}</small></h6>
+				<ul class="product-type clearfix">
+					<li *ngFor="let attribute of attrs; index as $index;"
+						(click)="updateSubAttribute(attribute,attrs)" [ngClass]="{'active':attribute.dflt==1}">
+						{{attribute.value}}
+					</li>
+				</ul>
+			</div>
+
+			<div class="pd20-B">
+				<a [routerLink]="['/store']" class="btn btn-success btn-md-block btn-prd-shopping mrg8-R" role="button">
+					<!-- <span class="glyphicon glyphicon-chevron-left"></span> -->
+					{{'CONTINUE SHOPPING' | translate:utilService.lang}}
+				</a>
+				<a [routerLink]="['/checkout']" class="btn btn-success btn-md-block btn-prd-checkout mrg8-R"
+					[ngClass]="{disabled: checkoutStatus}" role="button">{{'GO TO CHECKOUT' | translate:utilService.lang}}
+					<!-- <span class="glyphicon glyphicon-chevron-right"></span> -->
+				</a>
+			</div>
+			<div class="pd20-B">
+				<h6 class="title-attr"><small>{{'SHARE ON' | translate:utilService.lang}}</small></h6>
+				<div class="social-share-buttons social-share-section" *ngIf="searchName && searchName.length">
+					<!-- <share-buttons [theme]="'modern-dark'"
+					[include]="['facebook','twitter','tumblr','whatsapp']"
+					[show]="5"
+					[url]="'https://twitter.com/'"
+					[autoSetMeta]="false"
+					></share-buttons> -->
+					<button shareButton="facebook" class="btn mrg8-R" [style.backgroundColor]="share.prop.facebook.color">
+						<i class="fa fa-facebook fa-lg white-color"></i> 
+					</button>
+					<button shareButton="twitter" class="btn mrg8-R" [style.backgroundColor]="share.prop.twitter.color">
+						<i class="fa fa-twitter fa-lg white-color"></i> 
+					</button>
+					<button shareButton="whatsapp" class="btn mrg8-R" [style.backgroundColor]="share.prop.whatsapp.color">
+						<i class="fa fa-whatsapp fa-lg white-color"></i> 
+					</button>
+					<!-- <button style="background: #3B5998;" class="btn btn-medium share-btn"
+								socialshare
+								socialshare-provider="facebook"
+								socialshare-type="share"
+								socialshare-via="364624854315342"
+								socialshare-media="{{getProductImage()}}"
+								socialshare-quote="{{searchName+'\n\n'+getSharedText()}}"
+								socialshare-hashtags="#mytrademartstore"
+								socialshare-title="{{searchName}}"
+								socialshare-caption="{{searchName}}"
+								socialshare-url="{{getCurrentUrl()}}"
+								socialshare-popup-height="300"
+								socialshare-popup-width="400"																										
+								socialshare-trigger="click">
+								<i class="fa fa-facebook"></i> 
+							</button>
+							<a style="background: #25d366;" class="btn btn-medium share-btn"
+								socialshare
+								socialshare-provider="whatsapp"
+								socialshare-url="{{getCurrentUrl()}}"
+								socialshare-text="{{searchName+'\n\n'+getSharedText()}}">
+								<i class="fa fa-whatsapp"></i> 
+							</a> -->
+				</div>
+
+			</div>
+
+			<div class="row pd20-B">
+				<div class="col-md-6 col-lg-6 mrg8-T" style="display: flex;">
+					<span
+						style="display: inline-block; height: 30px; width: 30px; border: 1px solid #ddd; border-radius: 50%; padding-left: 8px; padding-top: 4px; padding-bottom: 9px; padding-right: 7px; background-color: #ddd; color: #7b7b7b;"><i
+							class="fa fa-thumbs-up"></i> </span>
+					<span style="display: inline-block; font-size: 12px; font-weight: 600; margin: auto 5px;">{{'100%
+						GENUINE PRODUCTS' | translate:utilService.lang}}</span>
+				</div>
+				<div class="col-md-6 col-lg-6 mrg8-T" style="display: flex;">
+					<span
+						style="display: inline-block; height: 30px; width: 30px; border: 1px solid #ddd; border-radius: 50%; padding-left: 8px; padding-top: 4px; padding-bottom: 9px; padding-right: 7px; background-color: #ddd; color: #7b7b7b;"><i
+							class="fa fa-globe"></i> </span>
+					<span style="display: inline-block; font-size: 12px; font-weight: 600; margin: auto 5px;">{{'DIRECT
+						IMPORTER & DISTRIBUTOR' | translate:utilService.lang}}</span>
+				</div>
+			</div>
+
+			<div class="review-section">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="review-title">
+							<span *ngIf="totalReviewCount > 0">{{totalReviewCount}}
+								{{totalReviewCount > 1 ? 'Reviews' : 'Review'}}</span>
+							<span class="rating-block">
+								<ul *ngIf="rating">
+									<li *ngFor="let value of [1,2,3,4,5]">
+										<span *ngIf="value>rating.rating" class="glyphicon glyphicon-star-empty"></span>
+										<span *ngIf="value<=rating.rating" class="glyphicon glyphicon-star"></span>
+									</li>
+								</ul>
+							</span>
+							<span class="text-right">
+								<button class="btn btn-success btn-green" id="open-review-box"
+									(click)="showPostReviewBox = !showPostReviewBox"
+									[disabled]="!rating.auth || (rating.auth && rating.status) || !rating.buy">{{'Leave a
+									Review' | translate:utilService.lang}}</button>
+							</span>
+						</div>
+						<hr />
+						<div class="well well-sm" [hidden]="!showPostReviewBox">
+							<div class="row" id="post-review-box">
+								<div class="col-md-12">
+									<ng-form name="myReviewForm">
+										<textarea class="form-control" cols="50" id="newReview" name="newReview"
+											data-ng-model="newReview" placeholder="Enter your review here..." rows="5"
+											maxlength="250"></textarea>
+										<p class="text-right">{{newReview.length}} / 250</p>
+										<div class="row">
+											<div class="col-md-6 col-sm-6 rating-block">
+												<ul>
+													<li *ngFor="let star of [1,2,3,4,5]">
+														<span *ngIf="star > productRating" (click)="ratingChanged(star)"
+															class="glyphicon glyphicon-star-empty star"></span>
+														<span *ngIf="star <= productRating"
+															(click)="ratingChanged(star)"
+															class="glyphicon glyphicon-star star"></span>
+													</li>
+												</ul>
+											</div>
+											<div class="col-md-6 col-sm-6 text-right">
+												<button class="btn btn-danger btn-sm" type="button"
+													id="close-review-box" style="margin-right: 10px;"
+													(click)="cancelRating()">{{'Cancel' | translate:utilService.lang}}</button>
+												<button class="btn btn-success btn-sm" type="button"
+													[disabled]="!newReview || (productRating <= 0)"
+													(click)="onChangeRating()">{{'Save' | translate:utilService.lang}}</button>
+											</div>
+										</div>
+									</ng-form>
+								</div>
+							</div>
+						</div>
+
+						<div *ngFor="let review of reviews; index as $index;">
+							<div class="review-block">
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<div class="rating-block">
+											<ul *ngIf="rating">
+												<li *ngFor="let value of [1,2,3,4,5]">
+													<span *ngIf="value>review.score"
+														class="glyphicon glyphicon-star-empty"></span>
+													<span *ngIf="value<=review.score"
+														class="glyphicon glyphicon-star"></span>
+												</li>
+												<li class="review-block-name"> by <b>{{review.username}}</b></li>
+												<li class="review-block-date"> on
+													{{review.created_at | date:'dd/MM/yyyy'}}</li>
+											</ul>
+										</div>
+										<div class="review-block-description">
+											{{ review.description }}
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr />
+						</div>
+
+						<div *ngIf="totalReviewCount==0">
+							<p class="empty-text">{{'This product has no reviews.' | translate:utilService.lang}}</p>
+							<p class="empty-text">{{'Let others know what do you think and be the first to write a review.' | translate:utilService.lang}}
+							</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="row more-review" *ngIf="totalReviewCount > 0">
+				<div class="col-md-12" *ngIf="totalReviewCount > reviews.length">
+					<button [disabled]="isEnabled || showSpinner || selectedRow!=null" type="button"
+						style="width:100%;text-align:center;margin:auto" class="more btn btn-primary btn-block"
+						(click)="loadMore()"><i *ngIf="showSpinner" class="fa fa-spinner fa-spin"></i> Load More
+						Reviews</button>
+				</div>
+				<div class="text-center" *ngIf="totalReviewCount <= reviews.length">
+					<h6><b>NO MORE REVIEWS TO SHOW</b></h6>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,5 @@
+<p>{{ appName }}</p>
+<span *ngIf="isFine">This is using structural directives</span>
+<ul *ngFor="let a of object1">
+  <li>{{ a | lowercase }}</li>
+</ul>

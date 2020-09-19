@@ -1,0 +1,17 @@
+{
+  "name": "play-hall",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node-http.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "mysql2": "^2.1.0",
+    "nodemailer": "^6.4.6"
+  }
+}

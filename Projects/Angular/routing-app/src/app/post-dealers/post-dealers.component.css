@@ -1,0 +1,219 @@
+/* Default styles */
+button:disabled {
+  cursor: not-allowed !important;
+}
+
+.container-fluid {
+  width: 90%;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+.form-container {
+  position: relative;
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 2.8rem;
+  padding: 2rem;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+/* Input styling */
+.form-group {
+  position: relative;
+  margin-top: 1.9rem;
+}
+
+.form-group input {
+  width: 90%;
+  font-size: 0.9rem;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #c8ccd4;
+  transition: all 0.3s cubic-bezier(0.1, 0.4, 0.6, 1);
+}
+
+.form-group input:focus {
+  border-bottom: 2px solid #0077ff;
+}
+
+.form-control {
+  display: block;
+}
+
+.form-control::placeholder {
+  color: transparent;
+}
+
+/* label styling */
+.inp-plc {
+  position: absolute;
+  cursor: text;
+  font-size: 0.8rem;
+  top: -1rem;
+  color: #0077ff;
+  left: 0;
+  transition: all 0.2s ease-in-out;
+  margin-left: 0.1rem;
+}
+
+.form-group input:placeholder-shown ~ .inp-plc {
+  top: 0;
+  left: 0;
+  font-size: 1rem;
+  color: #878b94;
+}
+
+/* tick mark styling */
+.fa-check {
+  position: absolute;
+  right: 0;
+  top: 0.2rem;
+  color: #0077ff;
+  font-size: 1rem;
+  font-weight: 100;
+  visibility: visible;
+  transform: translateY(0rem);
+  transition: all 0.1s ease-in;
+}
+
+.is-invalid {
+  border: 2px solid rgb(221, 100, 100);
+}
+
+.err-msg {
+  color: rgb(221, 100, 100);
+}
+
+.d-none {
+  transform: translateY(0.5rem);
+  visibility: hidden;
+}
+
+.btn {
+  margin-top: 2.3rem;
+  margin-left: 40%;
+  font-family: sans-serif;
+  font-family: "Nunito", sans-serif;
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+  padding: 0.4rem 0.8rem;
+  transition: all 0.3s;
+  outline: none;
+  font-weight: 400;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.btn:hover {
+  background-color: #0077ff;
+  color: white;
+  border: 1px solid #0077ff;
+  font-weight: 400;
+}
+
+.btn:active {
+  animation: btnClicked 0.3s ease-in-out;
+}
+
+form select {
+  font-family: "Nunito", sans-serif;
+  width: 10rem;
+  padding: 0.5rem;
+  outline: none;
+  font-size: 0.8rem;
+}
+
+.bk-error {
+  visibility: hidden;
+  position: absolute;
+  background-color: #c1f7ee;
+  color: rgb(44, 42, 42);
+  top: 30%;
+  right: 1rem;
+  width: 30%;
+  padding: 0.5rem;
+  border-radius: 2px;
+  visibility: visible;
+  transition: all 0.3s ease-in;
+  animation: notify 0.5s linear;
+}
+
+.bk-error1 {
+  background-color: #f44336 !important;
+}
+
+.text-danger {
+  color: white;
+}
+
+.tdf {
+  text-align: center;
+}
+
+@keyframes btnClicked {
+  0% {
+    transform: scale(1);
+  }
+
+  33% {
+    transform: scale(0.99);
+  }
+
+  50% {
+    transform: scale(0.98);
+  }
+
+  66% {
+    transform: scale(0.99);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes ticked {
+  0% {
+    transform: translateY(-1rem);
+  }
+
+  50% {
+    transform: translateY(-0.5rem);
+  }
+
+  100% {
+    transform: translateY(0rem);
+  }
+}
+
+@keyframes notify {
+  0% {
+    transform: translateX(10rem);
+  }
+  20% {
+    transform: translateX(8rem);
+  }
+
+  40% {
+    transform: translateX(6rem);
+  }
+
+  60% {
+    transform: translateX(4rem);
+  }
+
+  80% {
+    transform: translateX(2rem);
+  }
+
+  95% {
+    transform: translateX(-1rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Radio Buttons..!</title>
+</head>
+<body>
+    
+
+    <input id="id1" name="grp1" type="radio" value="Simple">Simple</input> <br>
+    <input id="id2" name="grp1" type="radio" value="Simple">Complex</input> <br>
+    <button onclick="findOne()">Click me</button>
+
+    <script>
+        
+        var rd1=document.getElementById("id1");
+        var rd2=document.getElementById("id2");
+        function findOne() {
+            if(rd1.checked == true) {
+                alert("Simple is selected");
+            } else if (rd2.checked == true) {
+                alert("Complex is selected");
+            } else {
+             alert("Options are not selected");
+            }
+        }
+    </script>
+</body>
+</html>

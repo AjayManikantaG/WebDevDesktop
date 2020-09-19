@@ -1,0 +1,373 @@
+/** @format */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Montserrat, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Nav Bar Css starts here */
+#nav-bar {
+  height: 100px;
+  background: #333545;
+}
+
+.main-nav-bar-container {
+  display: flex;
+  align-items: center;
+}
+
+.main-nav-bar-container img {
+  width: 130px;
+  height: 75px;
+  color: white;
+  margin-left: 10px;
+}
+
+.main-nav-bar-container .search-section {
+  margin-left: 50px;
+  background: white;
+  padding: 1px 1px 1px 15px;
+  border-radius: 5px;
+}
+
+.main-nav-bar-container i {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.288);
+}
+
+.main-nav-bar-container input[type="text"] {
+  height: 40px;
+  width: 850px;
+  color: black;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 100;
+  padding: 1px 1px 1px 10px;
+}
+
+.main-nav-bar-container .sign-in-btn {
+  margin-left: 50px;
+  padding: 6px 12px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: #0078ff;
+  cursor: pointer;
+}
+
+.main-nav-bar-container .fa-bars {
+  color: rgba(216, 216, 216, 0.438);
+  font-size: 20px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+/* Slider Css */
+#sign-in-slide {
+  position: absolute;
+  height: 100%;
+  width: 25%;
+  background: white;
+  display: none;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  transition: all 0.2s;
+  box-shadow: -2px 0px 8px 0px rgba(0, 0, 0, 0.75);
+}
+
+.slide-main-container {
+  display: flex;
+  align-items: center;
+  background: #333545;
+  height: 100px;
+  color: white;
+}
+
+.slide-main-container .sign-in-up-logo i {
+  color: white;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.slide-main-container span i {
+  color: rgb(228, 212, 212);
+  margin-left: 40px;
+  cursor: pointer;
+}
+
+.slide-main-container .sign-in-up-text p {
+  font-family: Montserrat, sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+}
+
+.slide-main-container .sign-in-up-text p a {
+  text-decoration: none;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+}
+
+.slide-main-container .sign-in-up-text .guest-text {
+  color: rgba(194, 194, 194, 0.274);
+}
+
+.slide-content p {
+  padding: 20px 15px;
+  border-bottom: 1px solid rgb(219, 216, 216);
+}
+
+.slide-content p a {
+  color: black;
+  font-family: Montserrat, sans-serif;
+  font-weight: 100;
+  font-size: 12px;
+}
+
+.slide-content p:hover {
+  background: rgb(243, 239, 239);
+  cursor: pointer;
+}
+
+/* Sub Events Css starts here */
+.sub-nav-bar-container {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sub-nav-bar-container .main-events {
+  margin-right: 150px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.sub-nav-bar-container a {
+  color: white;
+  font-weight: 100;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.sub-nav-bar-container .main-events a {
+  margin-left: 20px;
+}
+
+.sub-nav-bar-container .sub-events a {
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+/* Image Slider Css */
+#image-slider {
+  position: relative;
+}
+
+#image-slider .main-image-slider-container {
+  display: flex;
+  overflow-x: hidden;
+}
+
+#image-slider .main-image-slider-container img {
+  height: 320px;
+  padding: 10px 10px;
+  border-radius: 15px;
+  width: 700px;
+  transform: translateX(-50%);
+  transition: all 0.8s ease-in-out;
+  cursor: pointer;
+}
+
+#next-image-slide {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+  color: rgb(172, 144, 144);
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+
+#prv-image-slide {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  color: rgb(172, 144, 144);
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+#image-slider:hover #next-image-slide {
+  opacity: 1;
+}
+
+#image-slider:hover #prv-image-slide {
+  opacity: 1;
+}
+
+/* Trending searches and movies css */
+#movies-section {
+  display: flex;
+  height: 1050px;
+  padding-top: 100px;
+  background: #ddd;
+}
+
+#movies-section .trending-searches {
+  min-width: 25%;
+  height: 100%;
+}
+
+#movies-section .trending-searches h3 {
+  text-align: center;
+  font-weight: 200;
+}
+
+#movies-section .trending-searches .top-searches {
+  padding: 10px;
+  text-align: left;
+  margin-left: 20px;
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 5px;
+  transition: box-shadow 0.4s ease-in-out;
+}
+
+#movies-section .trending-searches .top-searches:hover {
+  box-shadow: 0px 0px 10px 0 rgba(0, 0, 0, 0.6);
+}
+
+#movies-section .trending-searches .top-searches p {
+  background: #fff;
+  padding: 15px 15px 30px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(167, 167, 167, 0.199);
+  font-size: 14px;
+}
+
+#movies-section .trending-searches .top-searches p:last-child {
+  border-bottom: none;
+}
+
+#movies-section .trending-searches .top-searches p a {
+  color: #000;
+}
+
+#movies-section .trending-searches .top-searches p:hover a {
+  color: blue;
+}
+
+#movies-section .all-items {
+  max-width: 80%;
+  margin-left: 30px;
+}
+
+#movies-section .all-items h3 {
+  font-weight: 200;
+}
+
+#movies-section .all-items .all-movies {
+  margin-top: 20px;
+  display: flex;
+}
+
+#movies-section .all-items .all-movies div {
+  display: flex;
+  flex-direction: column;
+}
+
+.dear-comrade {
+  background: white;
+  border-radius: 15px;
+  transition: box-shadow 0.4s ease-in-out;
+  margin-right: 14px;
+  cursor: pointer;
+}
+
+.dear-comrade:hover {
+  box-shadow: 0px 0px 15px 0 rgba(0, 0, 0, 0.6);
+}
+
+#movies-section .all-items .all-movies div img {
+  width: 250px;
+  border-radius: 15px 15px 0 0;
+}
+
+#movies-section .all-items .all-movies div .movie-name p {
+  font-size: 12px;
+  padding: 15px;
+}
+
+/* All the events css goes here */
+.events h3 {
+  margin-top: 20px;
+}
+
+#footer {
+  background: #404043;
+}
+
+#footer .customer-care {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px;
+  color: rgba(221, 221, 221, 0.822);
+  font-weight: 100;
+}
+
+.customers {
+  text-align: center;
+  cursor: pointer;
+}
+
+.last-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.last-footer i {
+  margin-right: 10px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  color: rgba(221, 221, 221, 0.822);
+}
+
+.last-footer i:hover {
+  color: white;
+}
+
+/* To get responsive design */
+@media only screen and (max-width: 1250px) {
+  .main-nav-bar-container input[type="text"] {
+    height: 40px;
+    width: 600px;
+    color: black;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 100;
+    padding: 1px 1px 1px 10px;
+  }
+
+  .sub-nav-bar-container .main-events {
+    margin-right: 20px;
+  }
+}

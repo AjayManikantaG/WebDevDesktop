@@ -1,0 +1,132 @@
+<!-- @format -->
+
+<div class="side-bar">
+<div class="col-md-5 col-sm-5 product-carousel-section">
+  <div class="swipe-cont">
+    <div
+      class="swiper-container gallery-top"
+      [swiper]="galleryTopConfig"
+      #galleryImages2="ngxSwiper"
+    >
+      <div class="swiper-wrapper">
+        <div
+          class="swiper-slide"
+          *ngFor="let obj of slides; index as i"
+          (click)="activatePopUp(i)"
+        >
+          <img
+            *ngIf="obj.type == 'image'"
+            [src]="obj.src | safe"
+            class="hover-shadow cursor"
+            title="1"
+            alt="obj.alt"
+          />
+          <iframe
+            *ngIf="obj.type == 'youtube'"
+            [src]="obj.src | safe"
+            webkitallowfullscreen
+            frameborder="0"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          <video
+            *ngIf="obj.type == 'video'"
+            controls
+            poster="https://pbs.twimg.com/profile_images/981311875643195393/dS0t6BQ8_400x400.jpg"
+          >
+            <source [src]="obj.src | safe" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- Add Arrows -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+    <div
+      class="swiper-container gallery-thumbs"
+      [swiper]="galleryThumbsConfig"
+      #galleryThumbs="ngxSwiper"
+    >
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor="let obj of slides">
+          <img
+            *ngIf="obj.type == 'image'"
+            [src]="obj.src"
+            class="hover-shadow cursor"
+            title="1"
+            alt="obj.alt"
+          />
+          <iframe
+            *ngIf="obj.type == 'youtube'"
+            [src]="obj.src | safe"
+            webkitallowfullscreen
+            frameborder="0"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          <video
+            *ngIf="obj.type == 'video'"
+            controls
+            poster="https://pbs.twimg.com/profile_images/981311875643195393/dS0t6BQ8_400x400.jpg"
+          >
+            <source [src]="obj.src" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pop-up container -->
+  <div class="pop-up">
+    <div
+      class="pop-cont"
+      [class.pop-cont-display]="isPopUp"
+      [class.bounceInUp]="isPopUp"
+      [class.animated]="isPopUp"
+    >
+      <div
+        class="swiper-container gallery-top"
+        [swiper]="galleryTopConfig1"
+        #galleryImages1="ngxSwiper"
+      >
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" *ngFor="let obj of slides">
+            <img
+              *ngIf="obj.type == 'image'"
+              [src]="obj.src | safe"
+              class="hover-shadow cursor"
+              title="1"
+              alt="obj.alt"
+            />
+
+            <iframe
+              *ngIf="obj.type == 'youtube'"
+              [src]="obj.src | safe"
+              webkitallowfullscreen
+              frameborder="0"
+              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <video
+              *ngIf="obj.type == 'video'"
+              controls
+              pause="pause"
+              poster="https://pbs.twimg.com/profile_images/981311875643195393/dS0t6BQ8_400x400.jpg"
+            >
+              <source [src]="obj.src | safe" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+
+        <!-- Add Pagination -->
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+      <i class="glyphicon glyphicon-remove" (click)="removePopUp()"></i>
+    </div>
+  </div>
+</div>
+</div>

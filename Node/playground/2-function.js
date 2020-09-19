@@ -1,0 +1,12 @@
+// const square = function(x) {
+//     return x * x;
+// }
+
+// const square = (x) => x * x;
+
+// console.log(square(8));
+
+const event = {
+    name: 'Ajay',
+    
+}

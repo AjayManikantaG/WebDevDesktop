@@ -1,0 +1,55 @@
+/** @format */
+
+.container {
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid rgb(222, 92, 11);
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  outline: none;
+}
+
+.notes {
+  background: rgba(255, 255, 255, 0.742);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+}
+
+.input .checkbox {
+  transform: scale(1.2);
+  margin-left: 10px;
+}
+
+.input p {
+  margin-left: 10px;
+  border-radius: 3px;
+  margin:5px;
+}
+
+.buttons .del {
+  background: rgb(222, 92, 11);
+  margin-right: 10px;
+  border-radius: 2px;
+  font-size: 18px;
+  color: white;
+}
+
+.buttons .del:focus {
+  outline: none;
+}

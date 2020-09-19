@@ -1,0 +1,40 @@
+// Global variables
+$color-primary: orange;
+$color-secondary: gray;
+$color-tertiary: royalblue;
+
+$font-lg: 40px;
+$font-md: 30px;
+$font-sm: 20px;
+
+.nav {
+    background-color: $color-primary;
+    & ul {
+        display: flex;
+        list-style: none;
+        li a {
+            text-decoration: none;
+            color: $color-secondary;
+            &:hover {
+                color: blue;
+            }
+        }
+    }
+}
+
+@mixin fontText($fontSize: 50px) {
+    font-size: $fontSize;
+    text-align: center;
+}
+
+.banner h1 {
+    @include fontText;
+}
+
+.footer h1 {
+    @include fontText($font-md);
+    &:hover {
+        color: $color-tertiary;
+        background-color: $color-primary;
+    }
+}

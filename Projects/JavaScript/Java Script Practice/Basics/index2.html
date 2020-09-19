@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS objects</title>
+</head>
+<body>
+    
+    <h1 id="head1">Ajay</h1>
+
+
+
+    <button onclick="makeAlert()"> Click Me</button>
+
+
+
+
+    <script type="text/javascript">
+        
+        var str1 = "Ajay";
+        var str2 = new String();
+
+        var car = {
+            car_brand : "Tesla",
+            car_model : "B2515",
+            car_price : 35000,
+            autoPilot : function () {
+                document.write("<p> This Car has a auto pilot feature...! </p>")
+            }
+        }
+        // To add new property in object
+        car.car_fuel_type = "Electric";
+        car.autoPilot();
+        document.write(car);
+
+        document.write("<h2> The value is : " + typeof(str1) + "</h2>");
+        document.write("<h2> The value is : " + typeof(str2) + "</h2>" ); 
+    
+        function makeAlert() {
+            // window.alert("Ajay is a Good Boy..!");
+            var header1 = document.getElementById("head1");
+            header1.style.color = "red";
+        }
+    </script>
+
+</body>
+</html>

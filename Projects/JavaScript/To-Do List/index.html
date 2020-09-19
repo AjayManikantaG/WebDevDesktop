@@ -1,0 +1,45 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>To-Do Course</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Ajay's ToDo List</h1>
+    </header>
+    <form>
+      <input type="text" class="todo-input" />
+      <button class="todo-button" type="submit">
+        <i class="fas fa-plus-square"></i>
+      </button>
+      <div class="select">
+          <select name="todos" class="filter-todo" onchange="filterTodos()">
+              <option value="all">All</option>
+              <option value="completed">Completed</option>
+              <option value="uncompleted">Uncompleted</option>
+          </select>
+
+      </div>
+    </form>
+    <div class="todo-container">
+      <ul class="todo-list"></ul>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
